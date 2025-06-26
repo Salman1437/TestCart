@@ -1,11 +1,12 @@
 import React,{useState} from "react";
-import {View,StyleSheet,TextInput,Button, Text, TouchableOpacity} from 'react-native';
+import {View,StyleSheet,TextInput,Button, Text, TouchableOpacity, Alert} from 'react-native';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/AppNavigator";
 import AppTextInput from "../components/AppTextInput";
 import Colors from "../constants/color";
 import ErrorModal from "../components/ErrorModal";
 import CommonUi from "../components/CommonUi";
+import { useNetwork } from '../network/useNetwork';
 
 type Props = NativeStackScreenProps<RootStackParamList,'Login'>; // used to type the props to the Login screen component using navigstion with navigation with typescript 
 const LoginScreen : React.FC<Props> = ({navigation}) => { // React.FC is TypeScript to define  a fucntional React Component with typed props
@@ -14,10 +15,12 @@ const LoginScreen : React.FC<Props> = ({navigation}) => { // React.FC is TypeScr
     const [password,setPassword] = useState('');
     const [error, setError] = useState('');
     const [showError, setShowError] = useState(false);
-    
+      const { isConnected } = useNetwork(); //to check internet is connected or not
 
-    const handleLoginPress = () => {
+
+    const handleLoginPress = async() => {
         //Here we will check userName and password with validations and if error will show common modal by passing error and its visibility
+        
         if(userName.trim().length < 3)
         {
             setError('Username must be at least 3 characters');
@@ -29,6 +32,10 @@ const LoginScreen : React.FC<Props> = ({navigation}) => { // React.FC is TypeScr
             setError('Minimum 5 characters password is required');
             setShowError(true);
             return;
+        }
+        else if(!isConnected)
+        {
+            Alert.alert('No Internet')
         }
         else{
             //After validation is success then will move to Home Screen

@@ -39,7 +39,7 @@ const LoginScreen : React.FC<Props> = ({navigation}) => { // React.FC is TypeScr
         }
         else{
             //After validation is success then will move to Home Screen
-            navigation?.replace('Home')
+            navigation?.replace('Restaurants')
         }
     }
 

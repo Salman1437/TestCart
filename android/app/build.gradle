@@ -116,4 +116,7 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    implementation 'com.google.firebase:firebase-auth:22.3.0' // ✅ Add this line
+    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
 }

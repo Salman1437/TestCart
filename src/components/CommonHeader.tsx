@@ -16,8 +16,9 @@ const CommonHeader: React.FC<CommonHeaderProps> = ({ title, showBack = true }) =
     <View style={styles.headerView}>
       {showBack ? (
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Image style={styles.backIcon}
+          {showBack && <Image style={styles.backIcon}
           source={Images.backImage} />
+          }
         </TouchableOpacity>
       ) : (
         <View style={styles.backBtn} /> // keep spacing when back not shown
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     resizeMode: 'contain',
+    tintColor:Colors.white
   },
   backBtn: {
     width: 40,

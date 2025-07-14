@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput, View, Text, StyleSheet, TextInputProps, TouchableOpacity } from 'react-native';
+import { TextInput, View, Text, StyleSheet, TextInputProps, TouchableOpacity,Platform } from 'react-native';
 import Colors from '../constants/color';
 
 interface AppTextInputProps extends TextInputProps {
@@ -12,7 +12,7 @@ const AppTextInput: React.FC<AppTextInputProps> = ({ label, isPassword, ...rest 
 
   return (
     <View style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text style={styles.label}></Text>}
 
       <View style={styles.inputContainer}>
         <TextInput
@@ -54,11 +54,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  input: {
-    flex: 1,
-    fontSize: 16,
-    color:Colors.white
-  },
+ input: {
+  flex: 1,
+  fontSize: 16,
+  color: Colors.white,
+  backgroundColor: 'transparent',
+  textAlignVertical: 'center',
+},
   toggle: {
     color: 'blue',
     marginLeft: 10,

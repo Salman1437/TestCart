@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "228705741133",
+    "project_id": "genceesofttest",
+    "storage_bucket": "genceesofttest.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228705741133:android:ec0316c5b6066f4b366f04",
+        "android_client_info": {
+          "package_name": "com.testjuno"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXnveZ700Y4qh-RLe7GGWJL99TLtak-Ew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -33,7 +33,7 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
     Alert.alert(
       'Success',
       'Payment successful! Your order has been placed.',
-      [{ text: 'OK', onPress: () => navigation.navigate('Restaurants') }]
+      [{ text: 'OK', onPress: () => navigation.replace('Restaurants') }]
     )
   }
 

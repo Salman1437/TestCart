@@ -1,11 +1,18 @@
 import React from 'react'
-import {View, Button, Text, FlatList, TouchableOpacity, StyleSheet, ListRenderItem } from 'react-native'
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  Button,
+  ListRenderItem
+} from 'react-native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/AppNavigator'
 import CommonUi from '../components/CommonUi'
 import CommonHeader from '../components/CommonHeader'
-
-
+import Colors from '../constants/color'
 
 const RESTAURANTS = [
   { id: '1', name: 'Leez Burger House', latitude: 22.7196, longitude: 75.8577 },
@@ -19,54 +26,69 @@ const RESTAURANTS = [
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Restaurants'>
 }
-const RestaurantListScreen : React.FC<Props> = ({ navigation }: Props) => {
-  
-const renderItem: ListRenderItem<typeof RESTAURANTS[0]> = ({ item }) => (
-  <View style={styles.restaurantItem}>
-    <TouchableOpacity
-    style={{flex:1}}
-      onPress={() => navigation.navigate('Menu', { restaurantId: item.id })}
-    >
-      <Text style={styles.restaurantName}>{item.name}</Text>
-    </TouchableOpacity>
 
-    <Button
-      title="Show on Map"
-      onPress={() =>
-        navigation.navigate('Map', {
-          latitude: item.latitude,
-          longitude: item.longitude,
-          name: item.name,
-        })
-      }
-    />
-  </View>
-)
+const RestaurantListScreen: React.FC<Props> = ({ navigation }) => {
+  const renderItem: ListRenderItem<typeof RESTAURANTS[0]> = ({ item }) => (
+    <View style={styles.restaurantItem}>
+      <TouchableOpacity
+        style={styles.nameContainer}
+        onPress={() => navigation.navigate('Menu', { restaurantId: item.id })}
+      >
+        <Text style={styles.restaurantName}>{item.name}</Text>
+      </TouchableOpacity>
 
-  
-    return (
-    <CommonUi>
-        <CommonHeader
-        title = 'Home'
-        showBack = {false}/>
-    
-      <FlatList
-       data={RESTAURANTS}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}/>
-    </CommonUi>
+      <Button
+        title="Show on Map"
+        onPress={() =>
+          navigation.navigate('Map', {
+            latitude: item.latitude,
+            longitude: item.longitude,
+            name: item.name,
+          })
+        }
+      />
+    </View>
+  )
+
+  return (
+    <View style={styles.container}>
+      <CommonHeader title="Home" showBack={false} />
+      <CommonUi style={{ flex: 1 }}>
+        <FlatList
+          data={RESTAURANTS}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          contentContainerStyle={styles.listContent}
+        />
+      </CommonUi>
+    </View>
   )
 }
+
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  listContent: {
+    paddingBottom: 20,
+  },
   restaurantItem: {
     paddingVertical: 12,
+    paddingHorizontal: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-    flexDirection:'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  nameContainer: {
+    flex: 1,
+    marginRight: 10,
   },
   restaurantName: {
     fontSize: 18,
-    flex:1
+    color: Colors.white,
   },
 })
-export default React.memo(RestaurantListScreen);
+
+export default React.memo(RestaurantListScreen)

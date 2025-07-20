@@ -15,6 +15,7 @@ import { removeFromCart, addToCart, decreaseQuantity } from '../redux/cartSlice'
 import CommonUi from '../components/CommonUi'
 import CommonHeader from '../components/CommonHeader'
 import Images from '../constants/images'
+import Colors from '../constants/color'
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Cart'>
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 16,
+    color: Colors.white
   },
   checkoutBtn: {
     backgroundColor: '#2196f3',

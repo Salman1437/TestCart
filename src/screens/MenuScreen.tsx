@@ -14,6 +14,7 @@ import { addToCart, removeFromCart, decreaseQuantity } from '../redux/cartSlice'
 import CommonUi from '../components/CommonUi'
 import CommonHeader from '../components/CommonHeader'
 import Images from '../constants/images'
+import Colors from '../constants/color'
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Menu'>
@@ -41,13 +42,13 @@ const MenuScreen: React.FC<Props> = ({ navigation }) => {
     const quantity = getQuantity(item.id)
 
     return (
-      <View style={style.itemMain}>
-        <Text style={style.txtTitle}>{item.name} - ₹{item.price}</Text>
+      <View style={styles.itemMain}>
+        <Text style={styles.txtTitle}>{item.name} - ₹{item.price}</Text>
 
-        <View style={style.row}>
+        <View style={styles.row}>
           <TouchableOpacity
-            style={style.btn}
-            onPress={() => {
+            style={styles.btn}
+            onPress={() => {a
               if (quantity > 1) {
                 dispatch(decreaseQuantity(item.id))
               } else if (quantity === 1) {
@@ -55,16 +56,16 @@ const MenuScreen: React.FC<Props> = ({ navigation }) => {
               }
             }}
           >
-            <Image source={Images.minusImage} style={style.icon} />
+            <Image source={Images.minusImage} style={styles.icon} />
           </TouchableOpacity>
 
-          <Text style={style.qty}>{quantity}</Text>
+          <Text style={styles.qty}>{quantity}</Text>
 
           <TouchableOpacity
-            style={style.btn}
+            style={styles.btn}
             onPress={() => dispatch(addToCart({ ...item, quantity: 1 }))}
           >
-            <Image source={Images.plusImage} style={style.icon} />
+            <Image source={Images.plusImage} style={styles.icon} />
           </TouchableOpacity>
         </View>
       </View>
@@ -74,41 +75,47 @@ const MenuScreen: React.FC<Props> = ({ navigation }) => {
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
-    <CommonUi>
+    <View style={styles.container}>
       <CommonHeader title="Menu" showBack={true} />
+      <CommonUi style={{ flex: 1 }}>
+        <FlatList
+          data={MENU}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          contentContainerStyle={{ padding: 16, paddingBottom: 100 }}
+        />
 
-      <FlatList
-        data={MENU}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 100 }}
-      />
-
-      <TouchableOpacity
-        style={[
-          style.cartBtn,
-          totalItems === 0 && style.disabledBtn
-        ]}
-        onPress={() => navigation.navigate('Cart')}
-        disabled={totalItems === 0}
-      >
-        <Text style={style.cartBtnText}>Go to Cart</Text>
-      </TouchableOpacity>
-    </CommonUi>
+        <TouchableOpacity
+          style={[
+            styles.cartBtn,
+            totalItems === 0 && styles.disabledBtn
+          ]}
+          onPress={() => navigation.navigate('Cart')}
+          disabled={totalItems === 0}
+        >
+          <Text style={styles.cartBtnText}>Go to Cart</Text>
+        </TouchableOpacity>
+      </CommonUi>
+    </View>
   )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
   itemMain: {
     marginBottom: 16,
     padding: 12,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#f0f0f0',
     borderRadius: 8,
   },
   txtTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#333',
   },
   row: {
     flexDirection: 'row',
@@ -133,9 +140,11 @@ const style = StyleSheet.create({
   },
   cartBtn: {
     backgroundColor: '#2196f3',
-    padding: 12,
-    margin: 20,
-    borderRadius: 6,
+    padding: 14,
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 30,
+    borderRadius: 8,
     alignItems: 'center',
   },
   cartBtnText: {

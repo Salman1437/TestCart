@@ -1,11 +1,19 @@
 import React from 'react'
-import { View, Text, Button, StyleSheet, Alert } from 'react-native'
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Alert,
+  ScrollView
+} from 'react-native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigation/AppNavigator'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { clearCart } from '../redux/cartSlice'
 import CommonUi from '../components/CommonUi'
 import CommonHeader from '../components/CommonHeader'
+import Colors from '../constants/color'
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Checkout'>
@@ -30,42 +38,57 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
   }
 
   return (
-    <CommonUi>
+    <View style={styles.container}>
       <CommonHeader title="Checkout" showBack={true} />
 
-      <Text style={styles.txtSummary}>Order Summary:</Text>
+      <CommonUi style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          <Text style={styles.txtSummary}>Order Summary:</Text>
 
-      {cartItems.map(item => (
-        <View key={item.id} style={styles.cartMain}>
-          <Text style={styles.txtItemName}>
-            {item.name} - ${item.price} x {item.quantity}
-          </Text>
-        </View>
-      ))}
+          {cartItems.map(item => (
+            <View key={item.id} style={styles.cartMain}>
+              <Text style={styles.txtItemName}>
+                {item.name} - ₹{item.price} x {item.quantity}
+              </Text>
+            </View>
+          ))}
 
-      <Text style={styles.txtTotal}>Total to Pay: ${total}</Text>
+          <Text style={styles.txtTotal}>Total to Pay: ₹{total}</Text>
 
-      <Button title="Confirm Payment" onPress={handlePayment} />
-    </CommonUi>
+          <Button title="Confirm Payment" onPress={handlePayment} />
+        </ScrollView>
+      </CommonUi>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
+  scrollContent: {
+    padding: 16,
+    paddingBottom: 100
+  },
   txtSummary: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 16
+    marginBottom: 16,
+    color: Colors.white
   },
   cartMain: {
     marginBottom: 8
   },
   txtItemName: {
-    fontSize: 16
+    fontSize: 16,
+    color: Colors.white
   },
   txtTotal: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginVertical: 16
+    marginVertical: 16,
+    color: '#000'
   }
 })
 

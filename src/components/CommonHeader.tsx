@@ -1,35 +1,33 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
-import Colors from '../constants/color';
-import { useNavigation } from '@react-navigation/native';
-import Images from '../constants/images';
+import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import Colors from '../constants/color'
+import { useNavigation } from '@react-navigation/native'
+import Images from '../constants/images'
 
 interface CommonHeaderProps {
-  title: string;
-  showBack?: boolean; // optionally hide/show back button
+  title: string
+  showBack?: boolean
 }
 
 const CommonHeader: React.FC<CommonHeaderProps> = ({ title, showBack = true }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
     <View style={styles.headerView}>
       {showBack ? (
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          {showBack && <Image style={styles.backIcon}
-          source={Images.backImage} />
-          }
+          <Image style={styles.backIcon} source={Images.backImage} />
         </TouchableOpacity>
       ) : (
-        <View style={styles.backBtn} /> // keep spacing when back not shown
+        <View style={styles.backBtn} />
       )}
       <Text style={styles.txtTitle}>{title}</Text>
-      <View style={styles.placeholder} /> {/* Placeholder to balance layout */}
+      <View style={styles.placeholder} />
     </View>
-  );
-};
+  )
+}
 
-export default CommonHeader;
+export default CommonHeader
 
 const styles = StyleSheet.create({
   headerView: {
@@ -39,20 +37,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
   backIcon: {
     width: 24,
     height: 24,
     resizeMode: 'contain',
-    tintColor:Colors.white
+    tintColor: Colors.black, // ← FIXED to be visible
   },
   backBtn: {
     width: 40,
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   placeholder: {
-    width: 40, // matches backBtn width to center title
+    width: 40,
   },
   txtTitle: {
     fontSize: 20,
@@ -62,4 +63,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex: 1,
   },
-});
+})

@@ -32,7 +32,6 @@ const AppNavigator = () => (
       <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
        
-      <Stack.Screen name="Detail" component={DetailScreen} />
       <Stack.Screen name="Restaurants" component={RestaurantListScreen}/>
       <Stack.Screen name="Menu" component={MenuScreen}/>
       <Stack.Screen name='Cart' component={CartScreen}/>

@@ -1,167 +1,135 @@
-# 📱 TestVenus - React Native Demo App
+Food Delivery App – React Native (TypeScript)
+A demo food delivery application built using React Native and TypeScript. The app demonstrates a full flow from login to restaurant listing, menu selection, cart management, and checkout.
 
-This is a demo React Native application developed for a Mobile Developer written test. It demonstrates clean architecture, API integration, state management using Redux, and unit testing using Jest and React Native Testing Library.
+🚀 Features
+✅ Splash Screen – Intro screen on launch
 
----
+✅ Login Screen – Dummy login for demonstration
 
-## 🚀 Features
+✅ Restaurant List Screen – Displays mock restaurants
 
-- ✅ **Login Screen** – Dummy login flow
-- ✅ **Home Screen** – Displays a list of items fetched from API
-- ✅ **Detail Screen** – Displays details of a selected item
-- ✅ **Splash Screen**
-- ✅ **Reusable Components** – Input field, modal, headers, etc.
-- ✅ **Redux** – Manages application state (items)
-- ✅ **Axios** – Handles API requests
-- ✅ **React Navigation** – Manages screen transitions
-- ✅ **Testing** – Jest & React Native Testing Library used
+✅ Menu Screen – Menu items per restaurant
 
----
+✅ Cart Screen – Add/remove items, adjust quantity
 
-## 📦 Tech Stack
+✅ Checkout Screen – Review and confirm payment
 
-- React Native (TypeScript)
-- Redux Toolkit
-- Axios
-- React Navigation
-- React Native Safe Area Context
-- Jest + React Native Testing Library
+✅ Reusable Components – Header, Layout, UI elements
 
----
+✅ Redux Toolkit – Global state management (cart)
 
-## 📁 Project Structure
+✅ React Navigation – Stack-based screen navigation
 
-```
-testVenus/
+✅ TypeScript – Type safety across the project
+
+✅ Jest + RTL – Unit testing (optional setup)
+
+🛠 Tech Stack
+React Native (TypeScript)
+
+Redux Toolkit
+
+React Navigation (v6)
+
+Axios (if APIs are integrated)
+
+Jest + React Native Testing Library (optional)
+
+ESLint + Prettier (recommended for clean code)
+
+📁 Project Structure
+bash
+Copy
+Edit
+FoodDeliveryApp/
 ├── src/
-│   ├── api/                     # API calls (via Axios)
-│   ├── components/              # Reusable UI components
-│   │   ├── AppTextInput.tsx
-│   │   ├── CommonHeader.tsx
-│   │   ├── CommonUi.tsx
-│   │   └── ErrorModal.tsx
-│   ├── constants/               # App-wide constants
-│   │   ├── colors.ts
-│   │   └── images.ts
-│   ├── navigation/              # Navigation setup
-│   │   └── AppNavigation.tsx
-│   ├── redux/                   # Redux Toolkit slices and store
-│   │   ├── itemSlice.ts
-│   │   └── store.ts
-│   ├── screens/                 # All app screens
-│   │   ├── DetailsScreen.tsx
-│   │   ├── HomeScreen.tsx
+│   ├── components/            # Reusable components (CommonHeader, CommonUi)
+│   ├── constants/             # Colors, dummy data, etc.
+│   ├── navigation/            # Stack navigation setup
+│   ├── redux/                 # Redux slices & store
+│   ├── screens/               # All app screens
+│   │   ├── SplashScreen.tsx
 │   │   ├── LoginScreen.tsx
-│   │   └── SplashScreen.tsx
-│   └── types/                   # Type definitions
-│       └── item.ts
-├── __tests__/                   # Unit tests
-├── App.tsx
+│   │   ├── RestaurantListScreen.tsx
+│   │   ├── MenuScreen.tsx
+│   │   ├── CartScreen.tsx
+│   │   └── CheckoutScreen.tsx
+│   └── types/                 # TypeScript type definitions
+├── App.tsx                    # Entry point
 ├── package.json
 ├── tsconfig.json
-├── babel.config.js
-├── jest.config.js
-└── README.md
-```
+├── README.md
+└── ...
+📲 Screens Flow
+SplashScreen →
 
----
+LoginScreen →
 
-## 🛠 Setup & Running Instructions
+RestaurantListScreen →
 
-> **Ensure your development environment is configured as per:**  
-> https://reactnative.dev/docs/environment-setup
+MenuScreen (by Restaurant) →
 
-### 1. Clone the Repository
+CartScreen →
 
-```bash
-git clone https://github.com/yourusername/testVenus.git
-cd testVenus
-```
+CheckoutScreen
 
-### 2. Install Dependencies
-
-```bash
+🚀 Getting Started
+1. Clone the Repo
+bash
+Copy
+Edit
+git clone https://github.com/Salman1437/TestCart.git
+cd TestCart
+2. Install Dependencies
+bash
+Copy
+Edit
 npm install
 # or
 yarn install
-```
-
-### 3. Start Metro Bundler
-
-```bash
-npm start
-```
-
-### 4. Run the App
-
-```bash
-npm run android
+3. Run the App
+bash
+Copy
+Edit
+npx react-native run-android
 # or
-npm run ios (macOS only)
-```
+npx react-native run-ios   # (macOS only)
+⚠️ Ensure your environment is set up:
+https://reactnative.dev/docs/environment-setup
 
----
-
-## 🧪 Run Unit Tests
-
-```bash
+🧪 Running Tests (Optional)
+bash
+Copy
+Edit
 npm test
-```
+Use Jest and React Native Testing Library to test UI components and Redux logic.
 
-Unit tests are written for components like:
-- `HomeScreen`: checks loading state, item rendering, and navigation.
-- Reusable components (like `AppTextInput`, `CommonHeader`) can also be tested similarly.
+🛒 Core Redux Store
+cartSlice.ts: Handles cart item add/remove/update
 
----
+hooks.ts: Typed useSelector & useDispatch
 
-## 🧾 Git & Commit History
+📤 Submission
+🔗 GitHub Repo
+https://github.com/Salman1437/TestCart
 
-- Git is used for version control.
-- Meaningful commits with messages like:
-  - `feat: implement login screen`
-  - `chore: integrate redux toolkit`
-  - `test: add unit tests for HomeScreen`
+📱 APK (Optional)
+Generate APK:
 
----
-
-## 📤 Submission
-
-### 🔗 GitHub Repository
-
-[https://github.com/yourusername/testVenus](https://github.com/yourusername/testVenus)  
-> 📌 Replace this with your actual public GitHub repo link.
-
-### 📱 APK Download Link
-
-[👉 Download APK](https://drive.google.com/your_apk_file_link)  
-> 📌 Upload your APK to Google Drive or Dropbox and paste the link here.
-
-### To generate the APK:
-
-```bash
+bash
+Copy
+Edit
 cd android
 ./gradlew assembleRelease
-```
+Then locate at:
 
-Then locate the APK at:
-```
+swift
+Copy
+Edit
 android/app/build/outputs/apk/release/app-release.apk
-```
+Upload to Google Drive/Dropbox and share the link here.
 
----
+👨‍💻 Author
+Name: Salman
 
-## 🙋 Author Info
-
-- **Name**: Your Name  
-- **Email**: your.email@example.com  
-- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
-
----
-
-## 🧠 Learn More
-
-- [React Native Docs](https://reactnative.dev/)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
-- [React Navigation](https://reactnavigation.org/)
-- [Jest](https://jestjs.io/)
-- [Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
+GitHub: github.com/Salman1437

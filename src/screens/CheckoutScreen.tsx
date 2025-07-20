@@ -52,11 +52,12 @@ const CheckoutScreen: React.FC<Props> = ({ navigation }) => {
               </Text>
             </View>
           ))}
-
-          <Text style={styles.txtTotal}>Total to Pay: ₹{total}</Text>
-
-          <Button title="Confirm Payment" onPress={handlePayment} />
         </ScrollView>
+
+        <View style={styles.bottomContainer}>
+          <Text style={styles.txtTotal}>Total to Pay: ₹{total}</Text>
+          <Button title="Confirm Payment" onPress={handlePayment} />
+        </View>
       </CommonUi>
     </View>
   )
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 100
+    paddingBottom: 20
   },
   txtSummary: {
     fontSize: 20,
@@ -84,10 +85,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.white
   },
+  bottomContainer: {
+    borderTopWidth: 1,
+    borderColor: '#ccc',
+    padding: 16,
+    backgroundColor: '#fff'
+  },
   txtTotal: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginVertical: 16,
+    marginBottom: 10,
     color: '#000'
   }
 })

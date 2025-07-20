@@ -48,7 +48,7 @@ const MenuScreen: React.FC<Props> = ({ navigation }) => {
         <View style={styles.row}>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => {a
+            onPress={() => {
               if (quantity > 1) {
                 dispatch(decreaseQuantity(item.id))
               } else if (quantity === 1) {
